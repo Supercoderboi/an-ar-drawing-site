@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#081014">
+  <title>AR Drawing</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main id="app">
+    <section class="topbar">
+      <div>
+        <p class="eyebrow">AR DRAWING</p>
+        <h1>Place a guide in your space.</h1>
+      </div>
+      <span id="status" class="status">Ready</span>
+    </section>
+
+    <section id="viewport" aria-label="AR drawing workspace">
+      <canvas id="scene"></canvas>
+      <div id="emptyState" class="empty-state">
+        <div class="target">+</div>
+        <p>Select an image, then start AR to scan a horizontal surface.</p>
+      </div>
+      <div id="unsupported" class="message hidden">
+        <strong>AR is unavailable here</strong>
+        <span>Open this page in Chrome on an ARCore-supported Android phone over HTTPS.</span>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Drawing controls">
+      <div class="primary-actions">
+        <button id="choose" class="button primary">Choose Image</button>
+        <button id="startAr" class="button accent">Start AR</button>
+        <button id="place" class="button accent hidden">Place</button>
+        <button id="exitAr" class="button subtle hidden">Exit AR</button>
+        <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+      </div>
+      <div class="control-row">
+        <label for="opacity">Tracing opacity <output id="opacityValue">100%</output></label>
+        <input id="opacity" type="range" min="10" max="100" value="100">
+      </div>
+      <div class="control-row compact">
+        <label for="size">Size <output id="sizeValue">1.0x</output></label>
+        <input id="size" type="range" min="25" max="300" value="100">
+        <button id="rotateLeft" class="icon-button" title="Rotate left" aria-label="Rotate left">↶</button>
+        <button id="rotateRight" class="icon-button" title="Rotate right" aria-label="Rotate right">↷</button>
+        <button id="delete" class="icon-button danger" title="Delete image" aria-label="Delete image">⌫</button>
+      </div>
+      <p id="hint" class="hint">Choose an image to begin.</p>
+    </section>
+  </main>
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.178.0/build/three.module.js"}}
+  </script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
